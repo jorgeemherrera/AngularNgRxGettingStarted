@@ -16,11 +16,10 @@ import { Observable } from 'rxjs';
 export class ProductListComponent implements OnInit {
   pageTitle = 'Products';
 
-  displayCode: boolean;
-  products$: Observable<Product[]>;
-  selectedProduct$: Observable<Product>;
   displayCode$: Observable<boolean>;
   errorMessage$: Observable<string>;
+  products$: Observable<Product[]>;
+  selectedProduct$: Observable<Product>;
 
   constructor(private store: Store<State>) { }
 
@@ -31,7 +30,7 @@ export class ProductListComponent implements OnInit {
     this.errorMessage$ = this.store.select(getError);
     this.selectedProduct$ = this.store.select(getCurrentProduct);
 
-    this.store.dispatch(ProductActions.LoadProducts());
+    this.store.dispatch(ProductActions.loadProducts());
 
 
     //TODO: Unsubscribe

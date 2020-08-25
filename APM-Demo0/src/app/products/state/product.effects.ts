@@ -15,10 +15,10 @@ export class ProductEffects {
     loadProducts$ = createEffect(() => {
       return this.actions$
       .pipe(
-        ofType(ProductActions.LoadProducts),
+        ofType(ProductActions.loadProducts),
         mergeMap(() => this.productService.getProducts().pipe(
-          map(products => ProductActions.LoadProductSuccess({ products })),
-          catchError(error => of(ProductActions.LoadProductFailure({error})))
+          map(products => ProductActions.loadProductSuccess({ products })),
+          catchError(error => of(ProductActions.loadProductsFailure({error})))
         ))
       )
     });
@@ -31,7 +31,7 @@ export class ProductEffects {
           this.productService.updateProduct(action.product)
             .pipe(
               map(product => ProductActions.updateProductSuccess({ product})),
-              catchError(error => of(ProductActions.upadateProductFailure({ error })))
+              catchError(error => of(ProductActions.updateProductFailure({ error })))
             )
         )
       );
