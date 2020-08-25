@@ -1,8 +1,9 @@
-import { createReducer, on, createFeatureSelector, createSelector } from '@ngrx/store';
 import { Product } from './../product';
 
-import * as AppState from '../../state/app.state';
+// NgRx
+import { createReducer, on, createFeatureSelector, createSelector } from '@ngrx/store';
 import * as productActions from './product.actions'
+import * as AppState from '../../state/app.state';
 
 export interface State extends AppState.State {
   products: ProductState
@@ -22,6 +23,7 @@ const initialState: ProductState = {
   error: '',
 };
 
+// Selector Functions
 const getProductFeatureState = createFeatureSelector<ProductState>('products');
 
 export const getShowProductCode = createSelector(

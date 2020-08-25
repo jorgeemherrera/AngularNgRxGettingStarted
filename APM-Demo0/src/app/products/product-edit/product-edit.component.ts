@@ -6,12 +6,13 @@ import { ProductService } from '../product.service';
 import { GenericValidator } from '../../shared/generic-validator';
 import { NumberValidators } from '../../shared/number.validator';
 
+import { tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
 // NgRx
 import { Store } from '@ngrx/store';
 import { State, getCurrentProduct } from '../state/product.reducer'
 import * as ProductActions from '../state/product.actions';
-import { tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'pm-product-edit',
@@ -21,12 +22,13 @@ export class ProductEditComponent implements OnInit {
   pageTitle = 'Product Edit';
   errorMessage = '';
   productForm: FormGroup;
+  
+  product$: Observable<Product | null>;
 
   // Use with the generic validation message class
   displayMessage: { [key: string]: string } = {};
   private validationMessages: { [key: string]: { [key: string]: string } };
   private genericValidator: GenericValidator;
-  product$: Observable<Product | null>;
 
   constructor(
       private store: Store<State>,
